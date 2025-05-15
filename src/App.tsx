@@ -13,6 +13,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import MapPage from "./pages/MapPage";
 import IGDetail from "./pages/IGDetail";
+import IGDetailSuggestion from "./pages/IGDetailSuggestion";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import SuggestPage from "./pages/SuggestPage";
@@ -37,7 +38,9 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
               <Route path="/map" element={<MapPage />} />
+              <Route path="/igs" element={<IGsListPage />} />
               <Route path="/ig/:id" element={<IGDetail />} />
+              <Route path="/igsuggestions/:id" element={<IGDetailSuggestion />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/suggest" element={<SuggestPage />} />

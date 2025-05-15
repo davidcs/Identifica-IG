@@ -1,4 +1,3 @@
-
 export type IGType = 'Potencial' | 'Concedida';
 export type IGIndicationType = 'Procedência' | 'Denominação de Origem';
 export type IGMaturityLevel = 'Inicial' | 'Em desenvolvimento' | 'Avançado' | 'Finalizado';
@@ -27,14 +26,6 @@ export interface IGSales {
   url?: string;
 }
 
-export interface IGFilters {
-  search?: string;
-  type?: IGType[];
-  state?: string[];
-  maturityLevel?: IGMaturityLevel[];
-  indicationType?: IGIndicationType[];
-}
-
 export interface IGDocument {
   id: string;
   name: string;
@@ -44,6 +35,7 @@ export interface IGDocument {
   createdAt: Date;
 }
 
+// ✅ Base comum para IGs Concedidas e Sugeridas
 export interface IGBase {
   id: string;
   name: string;
@@ -62,13 +54,13 @@ export interface IGBase {
   observations?: string;
   images: string[];
   documents?: IGDocument[];
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: Date;   // ✅ Incluído aqui
+  updatedAt: Date;   // ✅ Incluído aqui
   visible?: boolean;
 }
 
-export interface IGSuggestion extends Omit<IGBase, 'id' | 'createdAt' | 'updatedAt'> {
-  id: string;
+// ✅ Sugestão de IG estende IGBase e adiciona campos próprios
+export interface IGSuggestion extends IGBase {
   submittedBy: string;
   status: 'pending' | 'approved' | 'rejected';
   adminFeedback?: string;

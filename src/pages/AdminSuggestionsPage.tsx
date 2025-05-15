@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { IGSuggestion } from '@/types/ig';
 import { useSuggestions } from '@/hooks/useSuggestions';
-import AdminSuggestionContent from '@/components/admin/AdminSuggestionContent';
 import { useToast } from '@/hooks/use-toast';
 
 const AdminSuggestionsPage: React.FC = () => {

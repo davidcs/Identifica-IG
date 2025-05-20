@@ -11,7 +11,7 @@ interface IGSuggestionsTableProps {
   data: IGSuggestion[];
   title: string;
   isAdmin?: boolean;
-  onEdit: (updatedSuggestion: IGSuggestion) => Promise<void>;
+  onEdit: (updatedSuggestion: IGSuggestion) => void;
   onDelete?: (id: string) => void;
 }
 
@@ -27,7 +27,7 @@ const IGSuggestionsTable: React.FC<IGSuggestionsTableProps> = ({
   const [isSaving, setIsSaving] = useState(false);
 
   const handleViewDetails = (id: string) => {
-    navigate(`/ig/${id}`);
+    navigate(`/igsuggestions/${id}`);
   };
 
   const handleEditClick = (ig: IGSuggestion) => {

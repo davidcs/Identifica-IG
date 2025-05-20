@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IGTable from '@/components/IGTable';
 import IGSuggestionsTable from '@/components/IGSuggestionsTable';
+import IGSuggestionFormDialog from '@/components/admin/IGSuggestionFormDialog';
 import { useIG } from '@/contexts/IGContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -30,14 +31,18 @@ const IGsListPage: React.FC = () => {
   const { toast } = useToast();
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const defaultTab = searchParams.get('tab') || 'concedidas';
+  const [activeTab, setActiveTab] = useState(defaultTab);
 
   const [concedidasIGs, setConcedidasIGs] = useState<IGBase[]>([]);
   const [potenciaisIGs, setPotenciaisIGs] = useState<IGSuggestion[]>([]);
   const [selectedIG, setSelectedIG] = useState<string | null>(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [editingSuggestion, setEditingSuggestion] = useState<IGSuggestion | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
 
-  const tabParam = searchParams.get('tab') || 'concedidas';
+  const isAdmin = user?.role === 'admin' || user?.role === 'moderator';
 
   useEffect(() => {
     if (igs && igs.length > 0) {
@@ -59,9 +64,77 @@ const IGsListPage: React.FC = () => {
     navigate(`/admin/igs?tab=concedidas&edit=${id}`);
   };
 
-  const handleEditPotencial = (id: string) => {
-    navigate(`/admin/igs?tab=potenciais&edit=${id}`);
+
+  useEffect(() => {
+    const tabFromURL = searchParams.get('tab') || 'concedidas';
+    setActiveTab(tabFromURL);
+  }, [searchParams]);
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    setSearchParams({ tab: value });
   };
+
+  const handleEditSuggestion = (suggestion: IGSuggestion) => {
+    setEditingSuggestion(suggestion);
+  };
+
+  const handleSaveSuggestion = async (updated: IGSuggestion) => {
+  setIsSaving(true);
+  try {
+    const {
+      id,
+      documents,
+      images,
+      relatedEntities,
+      salesChannels,
+      socialMedia,
+      location,
+      ...rest
+    } = updated;
+
+    // ⚠️ Serializa os campos JSON para garantir compatibilidade
+    const { error } = await supabase
+      .from('ig_suggestions')
+      .update({
+        name: rest.name,
+        description: rest.description,
+        product_name: rest.productName,
+        characteristics: rest.characteristics,
+        technical_specifications: rest.technicalSpecifications,
+        control_structure: rest.controlStructure,
+        indication_type: rest.indicationType,
+        type: rest.type,
+        maturity_level: rest.maturityLevel,
+        observations: rest.observations,
+        submitted_by: rest.submittedBy,
+        status: rest.status,
+        location: location ? JSON.parse(JSON.stringify(location)) : null,
+        documents: documents ? JSON.parse(JSON.stringify(documents)) : [],
+        images: images ? JSON.parse(JSON.stringify(images)) : [],
+        related_entities: relatedEntities ? JSON.parse(JSON.stringify(relatedEntities)) : [],
+        sales_channels: salesChannels ? JSON.parse(JSON.stringify(salesChannels)) : [],
+        social_media: socialMedia ? JSON.parse(JSON.stringify(socialMedia)) : [],
+      })
+      .eq('id', id);
+
+    if (error) throw error;
+
+    toast({ title: 'Sucesso', description: 'Sugestão atualizada com sucesso.' });
+    setEditingSuggestion(null);
+    await refreshData();
+  } catch (err) {
+    toast({
+      title: 'Erro',
+      description: 'Erro ao salvar sugestão.',
+      variant: 'destructive',
+    });
+    console.error(err);
+  } finally {
+    setIsSaving(false);
+  }
+};
+
 
   const handleDelete = (id: string) => {
     setSelectedIG(id);
@@ -95,8 +168,6 @@ const IGsListPage: React.FC = () => {
 
       await refreshData();
     } catch (error: unknown) {
-      console.error('Erro ao excluir IG:', error);
-
       const errorMessage = error instanceof Error
         ? error.message
         : 'Não foi possível excluir a indicação geográfica.';
@@ -111,12 +182,6 @@ const IGsListPage: React.FC = () => {
       setDeleteDialogOpen(false);
       setSelectedIG(null);
     }
-  };
-
-  const isAdmin = user?.role === 'admin' || user?.role === 'moderator';
-
-  const handleTabChange = (value: string) => {
-    setSearchParams({ tab: value });
   };
 
   return (
@@ -146,7 +211,7 @@ const IGsListPage: React.FC = () => {
             </div>
           </div>
 
-          <Tabs value={tabParam} onValueChange={handleTabChange}>
+          <Tabs value={activeTab} onValueChange={handleTabChange}>
             <TabsList className="mb-6">
               <TabsTrigger value="concedidas">IGs Concedidas</TabsTrigger>
               <TabsTrigger value="potenciais">IGs Potenciais</TabsTrigger>
@@ -163,6 +228,7 @@ const IGsListPage: React.FC = () => {
                   title="Indicações Geográficas Concedidas"
                   onDelete={isAdmin ? handleDelete : undefined}
                   onEdit={isAdmin ? handleEditConcedida : undefined}
+
                 />
               )}
             </TabsContent>
@@ -177,7 +243,7 @@ const IGsListPage: React.FC = () => {
                   data={potenciaisIGs}
                   title="Sugestões de Indicações Geográficas"
                   onDelete={isAdmin ? handleDelete : undefined}
-                  onEdit={isAdmin ? handleEditPotencial : undefined}
+                  onEdit={isAdmin ? handleEditSuggestion : undefined}
                 />
               )}
             </TabsContent>
@@ -205,6 +271,16 @@ const IGsListPage: React.FC = () => {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {editingSuggestion && (
+        <IGSuggestionFormDialog
+          open={!!editingSuggestion}
+          onOpenChange={(open) => !open && setEditingSuggestion(null)}
+          suggestion={editingSuggestion}
+          isLoading={isSaving}
+          onSave={handleSaveSuggestion}
+        />
+      )}
 
       <Footer />
     </div>

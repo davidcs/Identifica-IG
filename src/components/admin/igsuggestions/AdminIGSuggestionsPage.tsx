@@ -7,14 +7,13 @@ import { IGSuggestion } from '@/types/ig';
 import { saveSuggestion, deleteSuggestion } from '@/services/suggestionsService';
 
 const AdminIGSuggestionsPage = () => {
-  const { igs } = useIG(); // igs: IGBase[]
-  const navigate = useNavigate();
+  const { igs } = useIG();
+  const navigate = useNavigate(); // ✅ necessário para redirecionar após salvar
   const [searchParams, setSearchParams] = useSearchParams();
   const editingId = searchParams.get('edit');
 
   const [isLoading, setIsLoading] = useState(false);
 
-  // ✅ Type guard garantindo campos de IGSuggestion
   const suggestions = igs.filter(
     (ig): ig is IGSuggestion =>
       ig.type === 'Potencial' &&
@@ -39,11 +38,11 @@ const AdminIGSuggestionsPage = () => {
     try {
       await saveSuggestion(updatedSuggestion);
       console.log('Sugestão salva com sucesso');
+      navigate('/igs-list?tab=potenciais'); // ✅ Redireciona para a aba correta
     } catch (error) {
       console.error('Erro ao salvar sugestão:', error);
     } finally {
       setIsLoading(false);
-      handleCloseDialog();
     }
   };
 
@@ -64,8 +63,9 @@ const AdminIGSuggestionsPage = () => {
       <IGSuggestionsTable
         data={suggestions}
         title="Sugestões de Indicações Geográficas"
-        onEdit={handleEdit}
+        onEdit={handleSave}
         onDelete={handleDelete}
+        isAdmin={true}
       />
 
       <IGSuggestionFormDialog

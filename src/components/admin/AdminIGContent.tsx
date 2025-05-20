@@ -15,7 +15,7 @@ interface AdminIGContentProps {
   setIsDeleteDialogOpen: (open: boolean) => void;
   igsToDelete: string | null;
   deleteLoading: boolean;
-  saveLoading: boolean;
+  saveLoading: boolean;''
   handleSaveIG: (ig: IGBase) => void;
   handleDeleteIG: () => void;
   handleAdd: () => void;

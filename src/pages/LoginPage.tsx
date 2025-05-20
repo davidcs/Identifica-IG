@@ -169,8 +169,7 @@ const LoginPage: React.FC = () => {
               </CardContent>
             </Card>
           )}
-
-          <Card className="mt-6 border-dashed">
+{/*      <Card className="mt-6 border-dashed">
             <CardContent className="p-4">
               <h3 className="font-medium mb-2 text-sm">Contas de teste:</h3>
               <div className="text-xs text-gray-600 space-y-1">
@@ -179,7 +178,7 @@ const LoginPage: React.FC = () => {
                 <p>Usuário: user@identifica-ig.com | user123</p>
               </div>
             </CardContent>
-          </Card>
+          </Card>*/}
         </div>
       </main>
       

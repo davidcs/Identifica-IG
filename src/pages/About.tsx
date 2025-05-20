@@ -52,9 +52,9 @@ const About: React.FC = () => {
           </section>
           
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">O Projeto Identifica-IG</h2>
+            <h2 className="text-2xl font-bold mb-4">O Projeto Identifica IG</h2>
             <p className="mb-4">
-              O Identifica-IG é uma plataforma colaborativa que tem como objetivo mapear as indicações geográficas brasileiras, tanto as já reconhecidas oficialmente quanto as potenciais, que ainda estão em processo de estruturação ou reconhecimento.
+              O Identifica IG é uma plataforma colaborativa que tem como objetivo mapear as indicações geográficas brasileiras, tanto as já reconhecidas oficialmente quanto as potenciais, que ainda estão em processo de estruturação ou reconhecimento.
             </p>
             <p className="mb-4">
               Nossa missão é contribuir para a valorização dos produtos brasileiros com identidade territorial, promovendo o conhecimento sobre IGs e estimulando o desenvolvimento de novas indicações geográficas em todo o país.
@@ -75,7 +75,7 @@ const About: React.FC = () => {
           <section className="mb-10">
             <h2 className="text-2xl font-bold mb-4">Como Participar?</h2>
             <p className="mb-4">
-              Todos podem contribuir com o Identifica-IG, seja apenas explorando o mapa e conhecendo mais sobre os produtos com indicação geográfica ou sugerindo novos potenciais produtos para o mapa.
+              Todos podem contribuir com o Identifica IG, seja apenas explorando o mapa e conhecendo mais sobre os produtos com indicação geográfica ou sugerindo novos potenciais produtos para o mapa.
             </p>
             <p>
               Para sugerir uma IG, basta se cadastrar na plataforma e preencher o formulário de sugestão com informações sobre o produto, região e características que o tornam único. Nossa equipe analisará as informações e, se aprovadas, adicionará a sugestão ao mapa como uma IG potencial.
@@ -85,15 +85,44 @@ const About: React.FC = () => {
           <section>
             <h2 className="text-2xl font-bold mb-4">Parceiros e Apoiadores</h2>
             <p className="mb-6">
-              O Identifica-IG conta com o apoio técnico e institucional de diversas organizações comprometidas com o desenvolvimento das IGs no Brasil:
+              O Identifica IG conta com o apoio técnico e institucional de diversas organizações comprometidas com o desenvolvimento das IGs no Brasil:
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="border p-4 rounded-lg flex items-center justify-center h-24">INPI</div>
-              <div className="border p-4 rounded-lg flex items-center justify-center h-24">IFES - Colatina</div>
-              <div className="border p-4 rounded-lg flex items-center justify-center h-24">PROFNIT</div>
-              <div className="border p-4 rounded-lg flex items-center justify-center h-24">SEBRAE</div>
+              <a
+                href="https://www.gov.br/inpi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border p-4 rounded-lg flex items-center justify-center h-24 hover:bg-gray-50 transition-colors"
+              >
+                INPI
+              </a>
+              <a
+                href="https://www.ifes.edu.br/campus-colatina"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border p-4 rounded-lg flex items-center justify-center h-24 hover:bg-gray-50 transition-colors text-center"
+              >
+                IFES - Colatina
+              </a>
+              <a
+                href="https://profnit.org.br"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border p-4 rounded-lg flex items-center justify-center h-24 hover:bg-gray-50 transition-colors"
+              >
+                PROFNIT
+              </a>
+              <a
+                href="https://www.sebrae.com.br"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border p-4 rounded-lg flex items-center justify-center h-24 hover:bg-gray-50 transition-colors"
+              >
+                SEBRAE
+              </a>
             </div>
           </section>
+
         </div>
       </main>
       

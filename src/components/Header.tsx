@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -26,8 +25,13 @@ const Header = () => {
       <div className="mx-auto max-w-7xl flex justify-between items-center h-16">
         <div className="flex items-center">
           <Link to="/" className="flex items-center gap-2">
-            <span className="text-lg font-bold bg-gradient-to-r from-ig-green-600 to-ig-yellow-500 bg-clip-text text-transparent">
-              Identifica-IG
+            <img
+              src="/Logo.png"
+              alt="Logo Identifica IG"
+              className="w-8 h-8 object-contain"
+            />
+            <span className="text-lg font-bold bg-gradient-to-r from-ig-green-600 to-ig-yellow-500 bg-clip-text text-transparent leading-none">
+              Identifica IG
             </span>
           </Link>
         </div>
@@ -103,31 +107,31 @@ const Header = () => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white pb-4 px-4">
           <nav className="flex flex-col space-y-3">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="text-gray-700 hover:text-ig-green-600 py-2 font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
               Início
             </Link>
-            <Link 
-              to="/map" 
+            <Link
+              to="/map"
               className="text-gray-700 hover:text-ig-green-600 py-2 font-medium flex items-center gap-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               <Map size={16} />
               <span>Mapa</span>
             </Link>
-            <Link 
-              to="/suggest" 
+            <Link
+              to="/suggest"
               className="text-gray-700 hover:text-ig-green-600 py-2 font-medium flex items-center gap-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               <FileText size={16} />
               <span>Sugerir</span>
             </Link>
-            <Link 
-              to="/about" 
+            <Link
+              to="/about"
               className="text-gray-700 hover:text-ig-green-600 py-2 font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -150,8 +154,8 @@ const Header = () => {
             ) : (
               <div className="flex flex-col space-y-2 mt-2 border-t pt-2">
                 <div className="font-medium text-sm">{user?.name}</div>
-                <Link 
-                  to="/profile" 
+                <Link
+                  to="/profile"
                   className="text-gray-700 hover:text-ig-green-600 py-2 font-medium flex items-center gap-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -159,8 +163,8 @@ const Header = () => {
                   <span>Perfil</span>
                 </Link>
                 {(user?.role === 'admin' || user?.role === 'moderator') && (
-                  <Link 
-                    to="/admin" 
+                  <Link
+                    to="/admin"
                     className="text-gray-700 hover:text-ig-green-600 py-2 font-medium flex items-center gap-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -168,8 +172,8 @@ const Header = () => {
                     <span>Painel Admin</span>
                   </Link>
                 )}
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   className="justify-start p-0 font-medium text-red-500 hover:text-red-700 hover:bg-transparent"
                   onClick={() => {
                     logout();

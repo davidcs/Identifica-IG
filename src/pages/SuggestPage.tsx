@@ -148,6 +148,8 @@ const SuggestPage: React.FC = () => {
         city: formData.city,
         state: formData.state,
       },
+      createdAt: undefined,
+      updatedAt: undefined
     });
     
     navigate('/');

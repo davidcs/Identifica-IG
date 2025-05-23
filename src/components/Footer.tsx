@@ -14,7 +14,7 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Identifica IG</h3>
             <p className="text-gray-600 text-sm">
-              Mapeamento e sugestão de Indicações Geográficas no Brasil.
+              Mapeamento e sugestão de Indicações Geográficas do Espírito Santo.
             </p>
           </div>
           

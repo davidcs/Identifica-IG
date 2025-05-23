@@ -24,10 +24,10 @@ const Index: React.FC = () => {
         <section className="bg-gradient-to-br from-ig-green-600 to-ig-green-800 text-white py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Mapeando as Indicações Geográficas do Brasil
+              Mapeando as Indicações Geográficas do Espírito Santo
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl">
-              Explore, descubra e contribua para o registro das IGs brasileiras
+              Explore, descubra e contribua para o registro das IGs capixabas
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button asChild size="lg" className="bg-white text-ig-green-700 hover:bg-gray-100">
@@ -109,7 +109,7 @@ const Index: React.FC = () => {
             <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8">
               <div>
                 <h2 className="text-3xl font-bold mb-2">Indicações Geográficas em Destaque</h2>
-                <p className="text-gray-600">Conheça algumas das IGs brasileiras já reconhecidas</p>
+                <p className="text-gray-600">Conheça algumas das IGs capixabas já reconhecidas</p>
               </div>
               <Button asChild variant="outline" className="mt-4 md:mt-0">
                 <Link to="/map">
@@ -140,7 +140,7 @@ const Index: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold mb-4">Conhece uma potencial Indicação Geográfica?</h2>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Contribua para o mapeamento das IGs brasileiras sugerindo uma indicação geográfica que você conhece.
+              Contribua para o mapeamento das IGs capixabas sugerindo uma indicação geográfica que você conhece.
             </p>
             <Button asChild size="lg">
               <Link to="/suggest">

@@ -54,7 +54,7 @@ const About: React.FC = () => {
           <section className="mb-10">
             <h2 className="text-2xl font-bold mb-4">O Projeto Identifica IG</h2>
             <p className="mb-4">
-              O Identifica IG é uma plataforma colaborativa que tem como objetivo mapear as indicações geográficas brasileiras, tanto as já reconhecidas oficialmente quanto as potenciais, que ainda estão em processo de estruturação ou reconhecimento.
+              O Identifica IG é uma plataforma colaborativa que tem como objetivo mapear as indicações geográficas capixabas, tanto as já reconhecidas oficialmente quanto as potenciais, que ainda estão em processo de estruturação ou reconhecimento.
             </p>
             <p className="mb-4">
               Nossa missão é contribuir para a valorização dos produtos brasileiros com identidade territorial, promovendo o conhecimento sobre IGs e estimulando o desenvolvimento de novas indicações geográficas em todo o país.
@@ -62,7 +62,7 @@ const About: React.FC = () => {
             <div className="bg-ig-green-50 p-6 rounded-lg mt-6">
               <h3 className="text-xl font-semibold mb-3">Objetivos da plataforma</h3>
               <ul className="list-disc pl-6 space-y-2">
-                <li>Mapear e divulgar IGs brasileiras já reconhecidas</li>
+                <li>Mapear e divulgar IGs capixabas já reconhecidas</li>
                 <li>Identificar potenciais novas IGs</li>
                 <li>Criar uma base de dados acessível sobre IGs</li>
                 <li>Conectar produtores, técnicos, consumidores e entusiastas</li>
@@ -85,7 +85,7 @@ const About: React.FC = () => {
           <section>
             <h2 className="text-2xl font-bold mb-4">Parceiros e Apoiadores</h2>
             <p className="mb-6">
-              O Identifica IG conta com o apoio técnico e institucional de diversas organizações comprometidas com o desenvolvimento das IGs no Brasil:
+              O Identifica IG conta com o apoio técnico e institucional de diversas organizações comprometidas com o desenvolvimento das IGs tanto no Espírito Santo, quanto no Brasil:
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <a

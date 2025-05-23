@@ -46,9 +46,9 @@ const getMaturityStars = (level: string) => {
     case 'Em desenvolvimento':
       return '⭐⭐';
     case 'Avançado':
-      return '⭐⭐⭐';
-    case 'Finalizado':
       return '⭐⭐⭐⭐';
+    case 'Finalizado':
+      return '⭐⭐⭐⭐⭐';
     default:
       return '';
   }

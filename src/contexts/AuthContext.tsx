@@ -13,7 +13,7 @@ interface AuthContextType extends AuthState {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Mock data for demonstration purposes
+// Acessos mockados
 const MOCK_USERS = [
   {
     id: '1',
